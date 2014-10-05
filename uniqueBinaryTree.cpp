@@ -15,7 +15,6 @@ private:
     vector<TreeNode *> ans;
     int num,tot;
     void generateTrees(TreeNode *&root,int i,int j){
-        if(i>j) return;
         for(int k=i;k<=j;k++){
             TreeNode *root = new TreeNode(k);                
             num++;
@@ -23,11 +22,11 @@ private:
                 ans.push_back(head);
             }
             else{
-                generateTrees(root->left,i,k-1);   
+                generateTrees(root->left ,i,k-1);   
                 generateTrees(root->right,k+1,j);  
-                num--;
-                delete root;
             }
+            num--;
+            delete root;
         }
     }
 public:
@@ -43,9 +42,9 @@ public:
         tot = n;
         for(int i=1;i<=n;i++){
             TreeNode *root = new TreeNode(i);   
-            head=root;
-            num = 1;
-            generateTrees(root->left,1,i-1);   
+            head = root;
+            num  = 1;
+            generateTrees(root->left ,1,i-1);   
             generateTrees(root->right,i+1,n);   
             delete root;
         }
